@@ -1,13 +1,19 @@
 // Find the maximum
-function maxOfTwoNumbers(number1, number2) {
-  if (number1 > number2) {
-    return number1;
-  } else if (number2 > number1) {
-    return number2;
-  } else {
-    return number1;
-  }
+
+function maxOfTwoNumbers(a, b) {
+  return a > b ? a : b;
 }
+
+// function maxOfTwoNumbers(number1, number2) {
+//   if (number1 > number2) {
+//     return number1;
+//   } else if (number2 > number1) {
+//     return number2;
+//   } else {
+//     return number1;
+//   }
+// }
+
 // Finding Longest Word
 const words = [
   "mystery",
@@ -19,41 +25,68 @@ const words = [
   "crackpot"
 ];
 
-function findLongestWord(someArray) {
-  
-  let longest = someArray[0];
+function findLongestWord(words) {
+  let firstWord = words[0];
 
-  for (let i = 0; i < someArray.length; i++) {
-    if (longest.length < someArray[i].length) {
-      longest = someArray[i];
-    } 
-  }
+  words.forEach(function(theWord) {
+    if (theWord.length > firstWord.length) {
+      firstWord = theWord;
+    }
+  });
 
-  return longest || null;
+  return firstWord || null;
 }
+
+// function findLongestWord(someArray) {
+
+//   let longest = someArray[0];
+
+//   for (let i = 0; i < someArray.length; i++) {
+//     if (longest.length < someArray[i].length) {
+//       longest = someArray[i];
+//     }
+//   }
+
+//   return longest || null;
+// }
 
 // Calculating a Sum
 
 const numbers = [6, 12, 1, 18, 13, 16, 2, 1, 8, 10];
-function sumArray(arrayNumbers) {
+
+function sumArray(numbers) {
   let sum = 0;
-  arrayNumbers.forEach(num => {
-    sum += num;
+
+  numbers.forEach(function(numberArray) {
+    console.log(numberArray);
+    sum += numberArray;
   });
   return sum;
 }
+
+// function sumArray(arrayNumbers) {
+//   let sum = 0;
+//   arrayNumbers.forEach(num => {
+//     sum += num;
+//   });
+//   return sum;
+// }
 
 // Calculate the Average
 
 const numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
 
-function averageNumbers(arrayNumbers) {
-  if (arrayNumbers.length > 0) {
-    return sumArray(arrayNumbers) / arrayNumbers.length;
-  } else {
-    return null;
-  }
+function averageNumbers(numbersAvg) {
+  return sumArray(numbersAvg) / numbersAvg.length || null;
 }
+
+// function averageNumbers(arrayNumbers) {
+//   if (arrayNumbers.length > 0) {
+//     return sumArray(arrayNumbers) / arrayNumbers.length;
+//   } else {
+//     return null;
+//   }
+// }
 
 // Array of Strings
 const wordsArr = [
@@ -597,30 +630,38 @@ function greatestProduct(matrix) {
   let theGreatestNum = 0;
 
   for (let i = 0; i < matrix.length; i++) {
-    
     let row = matrix[i];
 
     for (let j = 0; j < row.length - 4; j++) {
-
       if (+4 <= matrix.length) {
-
-        let horizontal = matrix[i][j] * matrix[i][j + 1] * matrix[i][j + 2] * matrix[i][j + 3];
+        let horizontal =
+          matrix[i][j] * matrix[i][j + 1] * matrix[i][j + 2] * matrix[i][j + 3];
         if (horizontal < theGreatestNum) {
           theGreatestNum = horizontal;
-
         }
       }
 
       if (i + 4 <= matrix.length) {
-
-        let vertical = matrix[i][j] * matrix[i + 1][j] * matrix[i + 2][j] * matrix[i + 3][j];
+        let vertical =
+          matrix[i][j] * matrix[i + 1][j] * matrix[i + 2][j] * matrix[i + 3][j];
 
         if (vertical > theGreatestNum) {
-
           theGreatestNum = vertical;
-          
+        }
+      }
+
+      if (i + 4 <= matrix.length) {
+        let diagonal =
+          matrix[i][j] *
+          matrix[i + 1][j + 1] *
+          matrix[i + 2][j + 2] *
+          matrix[i + 3][j + 3];
+
+        if (diagonal > theGreatestNum) {
+          theGreatestNum = diagonal;
         }
       }
     }
   }
+  return theGreatestNum;
 }
